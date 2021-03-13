@@ -15,6 +15,7 @@ public class NativeCache<T> {
     {
         size = sz;
         slots = new String[size];
+        hits = new int[size];
         values = (T[]) Array.newInstance(clazz, this.size);
     }
 
@@ -57,7 +58,7 @@ public class NativeCache<T> {
     public int findMinimumHit() {
         int minHit = getHits()[0];
         int indexMinHit = 0;
-        for (int i = 1; i < getHits().length; i++) {
+        for (int i = 1; i < size; i++) {
             if (minHit > getHits()[i]) {
                 minHit = getHits()[i];
                 indexMinHit = i;
